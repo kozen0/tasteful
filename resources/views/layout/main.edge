@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hello Adonis</title>
+  {{ style('style') }}
+</head>
+<body>
+    @loggedIn
+    @section('header')
+    <section id="header">
+    <div class="wrapper">
+        <div class="logo">
+            <h1><span>TasteFul</span> Recpies</h1>
+        </div>
+        <div class="search">
+            <form method="POST" action="/search">
+                {{ csrfField() }}
+                <input type="text" name="recipe">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <div class="signin">
+            <p><a href="/logout">Logout</a></p>
+            <p><a href="/recipelist">Recipe List</a></p>
+        </div>
+    </div>
+    </section>
+    @endsection
+    @!section('content')
+    @else
+    @section('header')
+    <section id="header">
+    <div class="wrapper">
+        <div class="logo">
+            <h1><span>TasteFul</span> Recpies</h1>
+        </div>
+        <div class="search">
+            <form method="POST" action="/search">
+                {{ csrfField() }}
+                <input type="text" name="recipe">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <div class="signin">
+            <p><a href="/login">Login</a></p>
+            <p><a href="/register">Register</a></p>
+        </div>
+    </div>
+    </section>
+    @endsection
+    @!section('content')
+    @endloggedIn
+</body>
+</html>

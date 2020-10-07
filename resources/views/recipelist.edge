@@ -1,0 +1,26 @@
+@layout('layout/main')
+@section('content')
+<div class="wrap">
+@each(item in arr)
+<div class="card">
+  <div>
+    {{arr[$loop.index].title}}
+  </div>
+  <div>
+    {{arr[$loop.index].servings}}
+  </div>
+  <div>
+    <img src={{arr[$loop.index].image}} alt="">
+  </div>
+  <div>
+    <button><a href="{{arr[$loop.index].sourceUrl}}">View Recipe</a></button>
+    <form method="POST" action="/remove/{{arrID[$loop.index]}}?_method=DELETE" class="formbox">
+      {{ csrfField() }}
+    <button value="{{ arr[$loop.index].id }}" name="id">remove</button>
+    </form>
+  </div>
+</div>
+@endeach
+</div>
+
+@endsection 

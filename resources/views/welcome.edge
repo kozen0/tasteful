@@ -1,0 +1,26 @@
+@layout('layout/main')
+@section('content')
+<div class="wrap">
+@each(item in b)
+<div class="card">
+  <div>
+    {{b[$loop.index].title}}
+  </div>
+  <div>
+    {{b[$loop.index].servings}}
+  </div>
+  <div>
+    <img src="https://spoonacular.com/recipeImages/{{b[$loop.index].image}}" alt="">
+  </div>
+  <div>
+    <button><a href="{{b[$loop.index].sourceUrl}}">View Recipe</a></button>
+    <form method="POST" action="/addrecipe" class="formbox">
+      {{ csrfField() }}
+    <button value="{{ b[$loop.index].id }}" name="id">Save to Recipe List</button>
+    </form>
+  </div>
+</div>
+@endeach
+</div>
+
+@endsection 

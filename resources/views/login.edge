@@ -1,0 +1,19 @@
+@layout('layout/main')
+@section('content')
+<div class="formBox">
+    <form action="login" method="POST">
+        {{ csrfField() }}
+        <div>
+            <label>Password</label>
+            <input type="password" name="password">
+        </div>
+        <div>
+            <label>Email</label>
+            <input type="text" class="input3" name="email">
+        </div>
+        <div class="btn">
+            <button type="submit">Login</button>
+        </div>
+    </form>
+    </div>
+@endsection

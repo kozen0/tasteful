@@ -1,0 +1,27 @@
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.card {
+    display: inline-block;
+    border: 2px solid black;
+    height: 250px;
+    width: 250px;
+    text-align: center;
+    margin: 10px;
+    overflow-y: hidden;
+}
+
+.card img {
+    height: 170px;
+    width: 100%;
+}
+
+.formbox {
+    display: inline-block;
+}
