@@ -91,3 +91,31 @@ table {
 		width: 250px;
 	}
   } */
+/* querys for login and register */
+@media only screen and (max-width: 561px) {
+	body {
+		overflow: hidden;
+	}
+	.formBox input {
+		width: 100%;
+		height: 30px;
+		position: relative;
+		left: 0px;
+	}
+
+	.formBox button {
+		width: 100%;
+	}
+	.formBox .input1 {
+		position: relative;
+		left: 0px;
+	}
+	.formBox .input3 {
+		position: relative;
+		left: 0px;
+	}
+	.formBox label.error{
+		position: relative;
+		left: 50px;
+	}
+  }
