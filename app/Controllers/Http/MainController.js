@@ -83,6 +83,7 @@ class MainController {
 
     async recipelist({view, auth, request, response}) {
         //get recipe ids from database
+        if (auth.user) {
         const apiKey = 'e5a639234e60424284571c0b2ddf7179'
         const arr = []
         const arrID = []
@@ -96,12 +97,16 @@ class MainController {
        }
        console.log(arrID[0])
           return view.render('recipelist', {arr, arrID}, {arrID})
+        } else {
+            return response.redirect('/login')
+        }
+
     }
 
     //adds recipe to the users recipe list
     async addrecipe({view, auth, request, response, session}) {
         if (auth.user) {
-            const recipes = request.collect(['id'])
+          const recipes = request.collect(['id'])
           const recipeids = recipes[0].id
           const recipeDataBase = new Recipe()
           const userId = auth.user.id
