@@ -4,16 +4,31 @@
     <form action="register" method="POST">
         {{ csrfField() }}
         <div>
+            <div>
+                <label class="error">
+                    {{ elIf('<span>$self</span>', getErrorFor('username'), hasErrorFor('username')) }}
+                 </label>
+            </div>
             <label>Username</label>
             <input type="text" class="input1" name="username">
         </div>
         <div>
-            <label>Password</label>
-            <input type="password" name="password">
-        </div>
-        <div>
+            <div>
+                <label class="error">
+                    {{ elIf('<span>$self</span>', getErrorFor('email'), hasErrorFor('email')) }}
+                 </label>
+            </div>
             <label>Email</label>
             <input type="text" class="input3" name="email">
+        </div>
+        <div>
+            <div>
+                <label class="error">
+                    {{ elIf('<span>$self</span>', getErrorFor('password'), hasErrorFor('password')) }}
+                 </label>
+            </div>
+            <label>Password</label>
+            <input type="password" name="password">
         </div>
         <div class="btn">
             <button type="submit">Create My Account</button>

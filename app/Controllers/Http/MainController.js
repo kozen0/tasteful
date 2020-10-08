@@ -2,16 +2,35 @@
 const User = use('App/Models/User')
 const Recipe = use('App/Models/Recipe')
 const fetch = require('node-fetch')
+const { validate } = use('Validator')
+
 class MainController {
 
     async main({view, auth, request}) {
             return view.render('welcome')
     }
-
+    //rehister view
     async  register({view}) {
         return view.render('register')
     }
-    async addusers({view, request}) {
+    //adds a new user
+    async addusers({view, request, session, response}) {
+        const rules = {
+            username: 'required',
+            email: 'required',
+            password: 'required'
+        }
+
+    const validation = await validate(request.all(), rules)
+
+    if (validation.fails()) {
+        session
+       .withErrors(validation.messages())
+       .flashExcept(['password'])
+
+       return response.redirect('back')
+    }
+
         const user = new User()
         const users = request.collect(['username','password','email'])
         console.log(users)
@@ -21,14 +40,31 @@ class MainController {
         user.save()
         return view.render('register')
     }
+    //login view
     async  login({view}) {
         return view.render('login')
     }
-   async loginusers({view, request, auth, response}) {
+    //login users
+   async loginusers({view, request, auth, response,session}) {
+    const rules = {
+        email: 'required',
+        password: 'required'
+    }
+    
+    const validation = await validate(request.all(), rules)
+
+    if (validation.fails()) {
+        session
+       .withErrors(validation.messages())
+       .flashExcept(['password'])
+
+       return response.redirect('back')
+    } else {
         const {email, password} = request.all()
         console.log({email, password})
         await auth.attempt(email,password)
         return response.redirect('/')
+    }
     }
    async logout({auth, response}) {
         await auth.logout()
@@ -61,15 +97,23 @@ class MainController {
        console.log(arrID[0])
           return view.render('recipelist', {arr, arrID}, {arrID})
     }
-    async addrecipe({view, auth, request, response}) {
-          const recipes = request.collect(['id'])
+
+    //adds recipe to the users recipe list
+    async addrecipe({view, auth, request, response, session}) {
+        if (auth.user) {
+            const recipes = request.collect(['id'])
           const recipeids = recipes[0].id
           const recipeDataBase = new Recipe()
           const userId = auth.user.id
           recipeDataBase.user_id = userId
           recipeDataBase.recipe_id = recipeids
           recipeDataBase.save()
+        } else {
+            return response.redirect('/login')
+        }
+          
     }
+    //removes recipe from recipe list
     async destroy({view, auth, request, response,params}) {
         // const x = await auth.user.recipe().fetch().rows[params].id
         // console.log(x.rows[0].id)

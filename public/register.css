@@ -16,6 +16,10 @@
     position: relative;
     left: 15px;
 }
+.formBox label.error{
+    position: relative;
+    left: 89px;
+}
 .formBox .input1 {
     position: relative;
     left: 12px;

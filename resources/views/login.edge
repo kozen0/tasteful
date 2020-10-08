@@ -4,13 +4,25 @@
     <form action="login" method="POST">
         {{ csrfField() }}
         <div>
+            <div>
+            <label class="error">
+                {{ elIf('<span>$self</span>', getErrorFor('email'), hasErrorFor('email')) }}
+             </label>
+            </div>
+            <label>Email</label>
+            <input type="text" class="input3" name="email" value="{{ old('email', '') }}">
+        </div>
+
+        <div>
+            <div>
+                <label class="error">
+                    {{ elIf('<span>$self</span>', getErrorFor('password'), hasErrorFor('password')) }}
+                 </label>
+            </div>
             <label>Password</label>
             <input type="password" name="password">
         </div>
-        <div>
-            <label>Email</label>
-            <input type="text" class="input3" name="email">
-        </div>
+
         <div class="btn">
             <button type="submit">Login</button>
         </div>
