@@ -29,6 +29,20 @@
     </section>
     @endsection
     @!section('content')
+    <script>
+        let b = document.querySelectorAll('#btn')
+        
+        b.forEach((button)=>{
+            button.addEventListener('click',function(e){
+                setTimeout(myF,1)
+                function myF() {
+                e.target.parentNode.parentNode.parentNode.remove()
+            }
+            })
+
+        })
+        
+     </script>
     @else
     @section('header')
     <section id="header">

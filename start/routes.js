@@ -27,3 +27,4 @@ Route.get('/logout', 'MainController.logout')
 Route.get('/recipelist', 'MainController.recipelist')
 Route.post('/addrecipe', 'MainController.addrecipe')
 Route.delete('/remove/:id', 'MainController.destroy')
+

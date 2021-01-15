@@ -16,7 +16,7 @@
     <button><a href="{{arr[$loop.index].sourceUrl}}">View Recipe</a></button>
     <form method="POST" action="/remove/{{arrID[$loop.index]}}?_method=DELETE" class="formbox">
       {{ csrfField() }}
-    <button value="{{ arr[$loop.index].id }}" name="id">remove</button>
+    <button value="{{ arr[$loop.index].id }}" name="id" class="arr[$loop.index]" id='btn'>remove</button>
     </form>
   </div>
 </div>
@@ -24,3 +24,7 @@
 </div>
 
 @endsection 
+{{--  <form method="POST" action="/remove/{{arrID[$loop.index]}}?_method=DELETE" class="formbox">
+  {{ csrfField() }}
+<button value="{{ arr[$loop.index].id }}" name="id">remove</button>
+</form>  --}}

@@ -123,8 +123,7 @@ class MainController {
         // const x = await auth.user.recipe().fetch().rows[params].id
         // console.log(x.rows[0].id)
           const recipeDataBase = await Recipe.findOrFail(params.id)
-         await recipeDataBase.delete()
-         return response.redirect('back')
+         await recipeDataBase.delete() 
     }
 }
 //   `https://api.spoonacular.com/recipes/salmon/information?apiKey=${apiKey}`
